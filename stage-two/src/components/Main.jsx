@@ -50,7 +50,7 @@ const Main = () => {
          <p className='w-[322px] md:w-[600px] text-white text-sm md:text-xl py-4 font-medium leading-[18px]'>
             {truncateString (movie?.overview, 200)}</p>
          
-         <div className='inline-flex absolute bottom-[-50%] md:top[100%]'>
+         <div className=' absolute bottom-[-60%] md:top[100%] '>
             <div className='bg-rose-700 text-white w-[169px] h-[48px] px-2 py-4 md:mt-6 rounded-md flex cursor-pointer hover:bg-red-800'>
               <FaPlayCircle className='mr-2 w-[40px] mt-[-4px]' />
               <p className='w-[190px] my-[-9px]'>Watch Triller</p>
