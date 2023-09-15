@@ -7,7 +7,7 @@ import WatchMore from './WatchMore';
 
 const MainMovie = () => {
   const [movies, setMovies] = useState([]);
-  const [likes, setLikes] = useState({});
+
   
   useEffect(() => {
     axios.get(requests.requestTrending).then((response) => {
@@ -24,13 +24,6 @@ const MainMovie = () => {
   // Get a random movie on component mount
   const movie = selectRandomMovie();
 
-  // Function to toggle like
-  const toggleLike = (movieId) => {
-    setLikes((prevLikes) => ({
-      ...prevLikes,
-      [movieId]: !prevLikes[movieId], // Toggle the like status for the movie
-    }));
-  };
 
   // Function to truncate string
   const truncateString = (str, num) => {

@@ -9,14 +9,7 @@ const Main = () => {
     const [movies, setMovies] = useState ([])
     
     const movie = movies[Math.floor(Math.random() * movies.length )]; 
-    const [likes, setLikes] = useState({}); // Create state for tracking likes
 
-  const toggleLike = (movieId) => {
-    setLikes((prevLikes) => ({
-      ...prevLikes,
-      [movieId]: !prevLikes[movieId], // Toggle the like status for the movie
-    }));
-  };
   
     useEffect(() => {
         axios.get(requests.requestTrending).then((response) =>{
