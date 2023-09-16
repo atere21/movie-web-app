@@ -10,7 +10,7 @@ const Home = () => {
     <>
     <Navbar/>
     <Main/>
-    <Row  title='Featured Movie' fetchURL={requests.requestTrending} />
+    <Row title='Featured Movie' fetchURL={requests.requestTrending} />
 
     <Footer/>
     </>

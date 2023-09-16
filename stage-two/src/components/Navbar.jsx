@@ -3,15 +3,13 @@ import { FaSearch } from "react-icons/fa";
 import logo from "../assets/tv.png";
 import menu from "../assets/Menu.png";
 import Main from "./Main";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Nav, Form, FormControl, Button } from 'react-bootstrap';
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [isSearching, setIsSearching] = useState(false); // Track whether a search is in progress
 
-  const API_KEY = "c956c6ae0469537b152ae95ec0bad867";
+  const API_KEY = "6308e98f9cc4c1f4bb89a792df3bfbf5";
   const API_SEARCH = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&query=`;
 
   useEffect(() => {
@@ -33,8 +31,6 @@ const Navbar = () => {
     }
   };
 
-
-
   const searchMovie = (e) => {
     e.preventDefault();
     console.log("Searching");
@@ -42,7 +38,6 @@ const Navbar = () => {
   };
 
   const changeHandler = (e) => {
-    
     setQuery(e.target.value);
   };
 
@@ -70,11 +65,13 @@ const Navbar = () => {
             onChange={changeHandler}
           />
           <div className="absolute right-3 top-3 text-white">
-            <FaSearch
-              className=" cursor-pointer hidden md:flex"
+            <button
+              className="absolute right-3 top-3 text-white"
               type="submit"
               onClick={searchMovie}
-            />
+            >
+              <FaSearch className="cursor-pointer hidden md:flex" />
+            </button>
           </div>
         </form>
 
@@ -88,7 +85,11 @@ const Navbar = () => {
               </div>
             </div>
           ) : (
-            isSearching && <h2 className="text-sm hidden md:flex">Sorry !! No Movies Found</h2>
+            isSearching && (
+              <h2 className="text-sm hidden md:flex">
+                Sorry !! No Movies Found
+              </h2>
+            )
           )}
         </div>
       </div>
@@ -104,11 +105,12 @@ const Navbar = () => {
 
 export default Navbar;
 
-
-   {/* <div className='flex items-center justify-between p-2 border-black rounded-full gap-12'>
+{
+  /* <div className='flex items-center justify-between p-2 border-black rounded-full gap-12'>
                <div className=''>
             <p className='h-8 bg-red-600 rounded-md p-2  text-white'>Top rated movie #65</p>
             <span>Awards 9 Nominations</span>
              <AiOutlineDown className='h-6 '/>
              </div>
-             </div> */}
+             </div> */
+}
