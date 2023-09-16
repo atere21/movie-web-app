@@ -1,79 +1,132 @@
-import React from 'react';
+import React from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import {FaPlay} from 'react-icons/fa';
 
-import logo from "../assets/tv.png";
-import home from "../assets/Home.png"
-import Calender from "../assets/Calendar.png"
-import projector from "../assets/projector.png"
-import Tv from "../assets/tvshow.png"
-import logout from "../assets/Logout.png"
+const MovieBox = () => {
+  const { id } = useParams();
+  const [movieDetail, setMovieDetail] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=6308e98f9cc4c1f4bb89a792df3bfbf5&language=en-US`
+      )
+      .then((response) => {
+        setMovieDetail(response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+  console.log(movieDetail);
 
-  const MovieDetails = () => {
-
+  const releaseDate = new Date(movieDetail.release_date);
+  const utcReleaseDate = releaseDate.toUTCString();
 
   return (
-    <div className="rounded-tr-3xl h-full md:h-full rounded-br-3xl border border-black border-opacity-30 md:my-0 my-[-12%]">
-        
-      {/* Left Side */}
-     
-          <div className="grid w-full h-full p-4">
-            <div className='flex items-center py-8'>
-              <img className="h-10 w-10" 
-              src={logo} alt="logo" />
-              <h2 className="font-bold text-black text-xl cursor-pointer ml-2">
-                MovieBox
-              </h2>
-            </div>
-
-            <div className='flex pt-6 items-center py-8'>
-              <img className="h-10 w-10" src={home} alt="home" />
-              <h2 className="text-sm text-gray-500  font-bold cursor-pointer ml-2 hover:text-gray-700">
-                Home
-              </h2>
-            </div>
-            <div className='flex pt-6 items-center py-8'>
-              <img className="h-10 w-10" src={projector} alt="movies" />
-              <h2 className="text-sm text-gray-500  font-bold cursor-pointer ml-2 hover:text-gray-700">
-                Movies
-              </h2>
-            </div>
-
-            <div className='flex pt-6 items-center py-8 '>
-              <img className="h-10 w-10" src={Tv} alt="tv" />
-              <h2 className="text-sm text-gray-500  font-bold cursor-pointer ml-2 hover:text-gray-700">
-                Tv Series
-              </h2>
-            </div>
-
-            <div className='flex pt-6 items-center py-8'>
-              <img className="h-10 w-10" src={Calender} alt="calender" />
-              <h2 className="text-sm text-gray-500  font-bold cursor-pointer ml-2 hover:text-gray-700">
-                Homecoming
-              </h2>
-            </div>
-                  
-            <div className='flex mt-26 items-center bg-red-100 text-black w-[180px] h-[260px]  rounded-[30px] border-red-400 border  mx-[-18px]'>
-                <div className='grid p-4'>
-                <h2 className='text-xl'> Play movie quizes and earn free tickets</h2>
-                <p className='text-sm'>50k people are playing now</p>
-              
-               <button className='text-red-600 rounded-full bg-red-300 h-10 my-6 cursor-pointer hover:bg-red-400'>Start Playing</button>
-               </div>
-               </div>
-            <div className='flex pt-6 items-center py-8'>
-              <img className="h-10 w-10" src={logout} alt="calender" />
-              <h2 className="text-sm text-gray-500  font-bold cursor-pointer ml-2 hover:text-gray-700">
-                Logout
-              </h2>
-            </div>
-            
+    <div>
+      <div
+      style={{
+        background: `url(https://image.tmdb.org/t/p/original/${movieDetail.poster_path})`,
+        width: '100%',
+        height: '449px',
+        backgroundSize: 'cover',
+      }}>
+        <div className="text-white flex flex-col justify-center items-center pt-[10rem] ">
+          <div className="bg-[#e8e8e8] bg-opacity-20 w-[50px] rounded-full p-5  h-[50px]">
+            <FaPlay className="" />
           </div>
-  
+          <p className=" text-xl">Watch Trailler</p>
+        </div>
+      </div>
+      {isLoading && <p>Loading...</p>}
+      <div className="flex flex-col md:flex text-[#6B7280] justify-between p-3">
+         <h1 className="font-bold text-2xl text-[#be123c]" data-testid="movie-title">{movieDetail.title}</h1>
+         <p data-testid="movie-release-date">{utcReleaseDate}</p>
 
-      {/* Right Side */}
-    
+        <p data-testid="movie-runtime">{movieDetail.runtime} </p>
+               </div>
+               <div className="flex">
+                   <div>
+                     <h2 className="font-bold text-2xl text-[#be123c] px-3">Overview.</h2>
+                   <p className="px-3 py-2 mb-[5rem] max-w-[50rem]" data-testid="movie-overview"> {movieDetail.overview}</p>
+         </div>
+         <div className=" flex-col mt-[2rem] ">
+          <button className="w-full bg-[#be123c] text-white p-2 rounded-md">
+            See Showtimes
+          </button>
+          <button className="bg-[#fae7ec] w-full p-2 rounded-md mt-2">
+            More Watch Options
+          </button>
+          </div>
+          </div>
     </div>
   );
 };
 
-export default MovieDetails;
+export default MovieBox;
+
+
+// import React from "react";
+// import { useState, useEffect } from "react";
+// import { useParams } from "react-router-dom";
+// import axios from "axios";
+
+// const MoviesDetails = () => {
+//   const { id } = useParams();
+//   const [movieDetail, setMovieDetail] = useState({});
+//   const [isLoading, setIsLoading] = useState(true);
+
+//   // const apiKey = import.meta.env.VITE_API_KEY;
+
+
+//   useEffect(() => {
+//     axios
+//       .get(
+//         `https://api.themoviedb.org/3/movie/b82735c257ba13fe2e97f629922f6a34?api_key=b82735c257ba13fe2e97f629922f6a34&language=en-US`
+//       )
+//       .then((response) => {
+//         setMovieDetail(response.data);
+//         setIsLoading(false);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching data:", error);
+//       });
+//   }, []);
+//   console.log(movieDetail);
+
+//   const releaseDate = new Date(movieDetail.release_date);
+//   const utcReleaseDate = releaseDate.toUTCString();
+
+//   return (
+//     <div>
+//       {isLoading && <p>Loading...</p>}
+//       <img src={`https://image.tmdb.org/t/p/w500${movieDetail.poster_path}`} alt={movieDetail.title} className="w-full h-[449px] object-cover"/>
+//       <div className="flex flex-col md:flex text-[#6B7280] justify-between p-3">
+//         <h1 className="font-bold text-2xl text-[#be123c]" data-testid="movie-title">{movieDetail.title}</h1>
+//         <p data-testid="movie-release-date">Release Date in UTC: {utcReleaseDate}</p>
+//         <p data-testid="movie-runtime">Runtime: {movieDetail.runtime} minutes</p>
+//       </div>
+//       <div className="flex">
+//         <div>
+//           <h2 className="font-bold text-2xl text-[#be123c] px-3">Overview.</h2>
+//           <p className="px-3 py-2 mb-[5rem] max-w-[50rem]" data-testid="movie-overview"> {movieDetail.overview}</p>
+//         </div>
+//         <div className=" flex-col mt-[2rem] ">
+//           <button className="w-full bg-[#be123c] text-white p-2 rounded-md">
+//             See Showtimes
+//           </button>
+//           <button className="bg-[#fae7ec] w-full p-2 rounded-md mt-2">
+//             More Watch Options
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default MoviesDetails;

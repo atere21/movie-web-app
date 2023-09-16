@@ -1,11 +1,11 @@
 import React from 'react'
-import Triller from '../components/Triller'
-import MoviePage from '../components/MovieDetails'
+
+import MovieDetails from '../components/MovieDetails.jsx'
 
 const TrillerMovies = () => {
   return (
     <div>
-        <Triller/>
+        <MovieDetails/>
         
     </div>
   )
