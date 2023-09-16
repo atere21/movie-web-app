@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import imdb from '../assets/imdb.png';
 import apple from '../assets/apple.png';
-import { Link } from 'react-router-dom';
-import { useParams } from "react-router-dom";
+
 
 const Movie = ({ item }) => {
   const [likes, setLikes] = useState({});
-  const { id } = useParams();
+
   const toggleLike = (movieId) => {
     setLikes((prevLikes) => ({
       ...prevLikes,

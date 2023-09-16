@@ -1,6 +1,4 @@
-
-
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import logo from "../assets/tv.png";
 import home from "../assets/Home.png"
