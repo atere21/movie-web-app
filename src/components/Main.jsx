@@ -30,6 +30,7 @@ const Main = () => {
        <div className='w-full h-full '>
         <div className='absolute w-full h-[650px] bg-gradient-to-r from-black/10'></div>
           <img className='w-full h-full object-cover'
+          data-testid="movie-card"
           src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`} alt={movie?.title}/>
         <div className='absolute top-[20%] p-4 md:p-8 my-4 px-8 h-[285px] flex-col justify-start items-start gap-4 inline-flex w-[404px]'>
        

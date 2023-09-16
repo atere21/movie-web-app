@@ -47,8 +47,9 @@ const Triller = () => {
             <>
               <img 
                 className="rounded-2xl"
+                data-testid="movie-poster"
                 src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
-                alt={movie?.title}
+                alt={movie?.backdrop_path}
               />
               <h1>{movie?.title}</h1>
               {/* Add more movie details here */}

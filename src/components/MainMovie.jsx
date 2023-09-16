@@ -32,11 +32,13 @@ const MainMovie = () => {
   };
 
   return (
-    <div className="w-[400px] md:w-[600px] h-[400px] md:left-[281px] top-[100%]  md:top-[518px] absolute mx-18  ">
+    <div className="w-[400px] md:w-[600px] h-[400px] md:left-[281px] top-[100%] my-16 md:top-[518px] absolute mx-18  ">
       <div className="bg-white mx-12 flex flex-col">
         <div className="flex mt-2 w-full">
           <p className=" text-black">
-            <span className="text-xl font-bold mr-4 ">{movie?.title}</span>2022.
+            <span 
+            data-testid="movie-title"
+            className="text-xl font-bold mr-4 ">{movie?.title}</span>2022.
             <span className="ml-2">PG-13.</span>
             <span className="ml-2">2h 10mins</span>
           </p>
