@@ -38,9 +38,12 @@ const MainMovie = () => {
           <p className=" text-black">
             <span 
             data-testid="movie-title"
-            className="text-xl font-bold mr-4 ">{movie?.title}</span>2022.
+            className="text-xl font-bold mr-4 ">{movie?.title}</span> 
+            <p  data-testid="movie-release-date"
+            >{movie?.release_date}</p>
             <span className="ml-2">PG-13.</span>
-            <span className="ml-2">2h 10mins</span>
+            <span data-testid="movie-runtime"
+            className="ml-2">2h 10mins</span>
           </p>
           <p className="border border-red-500 rounded-full p-2 mr-4 mx-8 text-red-700 font-bold align-center ">
             Action
@@ -49,7 +52,8 @@ const MainMovie = () => {
             Drama
           </p>
         </div>
-        <p className="mt-2 text-black leading-[18px] text-sm">
+        <p data-testid="movie-overview"
+        className="mt-2 text-black leading-[18px] text-sm">
           {truncateString(movie?.overview, 200)}
         </p>
         <div className="">
