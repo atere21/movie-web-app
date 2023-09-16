@@ -34,7 +34,8 @@ const Main = () => {
           src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`} alt={movie?.title}/>
         <div className='absolute top-[20%] p-4 md:p-8 my-4 px-8 h-[285px] flex-col justify-start items-start gap-4 inline-flex w-[404px]'>
        
-         <h1 className=' text-3xl md:text-5xl font-semibold w-full'>{movie?.title}</h1>
+         <h1 data-testid="movie-title"
+         className=' text-3xl md:text-5xl font-semibold w-full'>{movie?.title}</h1>
          <p>{movie?.tagline}</p>
          
           <div className='w-[404px] h-[285px] flex-col justify-start items-start gap-4 inline-flex'>
