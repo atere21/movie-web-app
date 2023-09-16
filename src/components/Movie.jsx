@@ -18,7 +18,7 @@ const Movie = ({ item }) => {
     <div className="cursor-pointer relative p-2">
       <div key={item.id} className="relative">
         {/* Use Link to navigate to the MoviePage with the movie's ID */}
-        <Link to={`/Movies/${item.id}`}>
+        <Link to={`/movies/${item.id}`}>
           <img
             className="object-contain rounded-md cursor-pointer"
             src={`https://image.tmdb.org/t/p/w500/${item?.poster_path}`}

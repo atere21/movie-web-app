@@ -31,19 +31,39 @@ const MainMovie = () => {
     }
   };
 
+  // Function to format runtime in hours and minutes
+  const formatRuntime = (minutes) => {
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    return `${hours}h ${remainingMinutes}mins`;
+  };
+
+  // Function to format release date in UTC
+  const formatReleaseDate = (dateString) => {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "UTC",
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   return (
     <div className="w-[400px] md:w-[600px] h-[400px] md:left-[281px] top-[100%] my-16 md:top-[518px] absolute mx-18  ">
       <div className="bg-white mx-12 flex flex-col">
         <div className="flex mt-2 w-full">
           <p className=" text-black">
-            <span 
-            data-testid="movie-title"
-            className="text-xl font-bold mr-4 ">{movie?.title}</span> 
-            <p  data-testid="movie-release-date"
-            >{movie?.release_date}</p>
+            <span data-testid="movie-title" className="text-xl font-bold mr-4 ">
+              {movie?.title}
+            </span>
+            <p data-testid="movie-release-date">
+              {formatReleaseDate(movie?.release_date)}
+            </p>
             <span className="ml-2">PG-13.</span>
-            <span data-testid="movie-runtime"
-            className="ml-2">2h 10mins</span>
+            <span data-testid="movie-runtime" className="ml-2">
+              {formatRuntime(movie?.runtime)}
+            </span>
           </p>
           <p className="border border-red-500 rounded-full p-2 mr-4 mx-8 text-red-700 font-bold align-center ">
             Action
@@ -52,8 +72,10 @@ const MainMovie = () => {
             Drama
           </p>
         </div>
-        <p data-testid="movie-overview"
-        className="mt-2 text-black leading-[18px] text-sm">
+        <p
+          data-testid="movie-overview"
+          className="mt-2 text-black leading-[18px] text-sm"
+        >
           {truncateString(movie?.overview, 200)}
         </p>
         <div className="">
