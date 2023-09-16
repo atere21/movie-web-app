@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import imdb from '../assets/imdb.png';
 import apple from '../assets/apple.png';
-
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 const Movie = ({ item }) => {
   const [likes, setLikes] = useState({});
@@ -17,15 +17,15 @@ const Movie = ({ item }) => {
   return (
     <div className="cursor-pointer relative p-2">
       <div key={item.id} className="relative">
-        {/* Pass the movie's ID as a URL parameter */}
-        <a href='/MoviePage'>
+        {/* Use Link to navigate to the MoviePage with the movie's ID */}
+        <Link to={`/MoviePage/${item.id}`}>
           <img
             className="object-contain rounded-md cursor-pointer"
             src={`https://image.tmdb.org/t/p/w500/${item?.poster_path}`}
             alt={item?.title}
             data-testid="movie-poster"
           />
-          </a>
+        </Link>
         <p
           onClick={() => toggleLike(item.id)}
           className="absolute top-12 right-8 text-gray-400 border-none p-2 md:mr-[22px] bg-gray-200 rounded-full cursor-pointer"

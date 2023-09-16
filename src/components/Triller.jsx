@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom'; // Import useParams from react-router-dom
 import requests from '../Requests'; // Import your requests file
 import MovieDetails from './MovieDetails';
 import MainMovie from './MainMovie';
 
-
 const Triller = () => {
-  const [movies, setMovies] = useState([]);
-  const movie = movies[Math.floor(Math.random() * movies.length)];
+  const { id } = useParams(); // Get the movie ID from URL parameters
+  const [movie, setMovie] = useState(null); // Use state to store the selected movie
   const [likes, setLikes] = useState({});
 
   const toggleLike = (movieId) => {
@@ -18,10 +18,14 @@ const Triller = () => {
   };
 
   useEffect(() => {
-    axios.get(requests.requestPopular).then((response) => {
-      setMovies(response.data.results);
+    // Fetch trending movies data
+    axios.get(requests.requestTrending).then((response) => {
+      // Assuming you want to set the first movie in the trending list
+      if (response.data.results && response.data.results.length > 0) {
+        setMovie(response.data.results[0]);
+      }
     });
-  }, []);
+  }, []); // Fetch data when the component mounts
 
   const truncateString = (str, num) => {
     if (str?.length > num) {
@@ -38,16 +42,20 @@ const Triller = () => {
           <MovieDetails />
         </div>
         <div className="w-70 p-4">
-          {/* Rest of your content */}
-          <img 
-            className=" rounded-2xl"
-            src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
-            alt={movie?.title}
-          />
+          {/* Display movie details */}
+          {movie && (
+            <>
+              <img 
+                className="rounded-2xl"
+                src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
+                alt={movie?.title}
+              />
+              <h1>{movie?.title}</h1>
+              {/* Add more movie details here */}
+            </>
+          )}
         </div>
-  
-          <MainMovie/>
-        
+        <MainMovie />
       </div>
     </div>
   );
