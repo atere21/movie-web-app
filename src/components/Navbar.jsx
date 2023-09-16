@@ -74,7 +74,7 @@ const Navbar = () => {
               type="submit"
               onClick={searchMovie}
             >
-              <FaSearch className="cursor-pointer hidden md:flex" />
+              <FaSearch className="cursor-pointer hidden md:flex my-[-12px]" />
             </button>
           </div>
         </form>

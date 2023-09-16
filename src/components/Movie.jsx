@@ -37,14 +37,15 @@ const Movie = ({ item }) => {
           )}
         </p>
       </div>
+
       <div className="w-full h-full bg-white text-black">
         <div className="left-2">
           <p className="text-xs font-bold mt-4" data-testid="movie-release-date">
             {item?.release_date}
           </p>
-          <p className="text-xl font-bold text-black mt-4">{item?.title}</p>
-          <div className="flex flex-col mt-4 justify-between">
-            <div className="flex items-center">
+          <p className="md:text-xl text:sm font-bold text-black mt-4">{item?.title}</p>
+          <div className="grid md:flex flex-col mt-4 justify-between">
+            <div className="grid md:flex items-center">
               <img src={imdb} alt="/" />
               <p className="ml-2">{item?.vote_average}/100</p>
               <div className="flex items-center ml-4">
